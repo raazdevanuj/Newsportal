@@ -8,6 +8,18 @@
         <servlet-name>controller</servlet-name>
         <servlet-class>controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controller1</servlet-name>
+        <servlet-class>controller1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubjectController</servlet-name>
+        <servlet-class>SubjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>controller2</servlet-name>
+        <servlet-class>controller2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
         <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controller1</servlet-name>
+        <url-pattern>/controller1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectController</servlet-name>
+        <url-pattern>/SubjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controller2</servlet-name>
+        <url-pattern>/controller2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

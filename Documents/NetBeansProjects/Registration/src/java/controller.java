@@ -30,6 +30,8 @@ public class controller extends HttpServlet {
   //      processRequest(request, response);
          PrintWriter out = response.getWriter();
         response.setContentType("text/html");
+         String op=request.getParameter("op");
+          if(op!=null && op.equalsIgnoreCase("add")){
         String id=request.getParameter("id");
          String option="<option>Select City</option>";
           Connection con =null;
@@ -43,7 +45,7 @@ public class controller extends HttpServlet {
             ResultSet rs = smt.executeQuery();
            while(rs.next())
                         {
-                    option=option+"<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</option>";
+                    option+="<option value='"+rs.getInt(1)+"'>"+rs.getString(2)+"</option>";
                         }
             smt.close();
             con.close();
@@ -54,6 +56,25 @@ public class controller extends HttpServlet {
             System.out.println("Error : + "+ e.getMessage());
         
         } 
+       }    
+        if(op!=null && op.equalsIgnoreCase("table")){
+        int n =Integer.parseInt(request.getParameter("n"));
+        for(int i=1;i<=10;i++)
+            out.println("<br/>" + (n*i));    
+        }
+    
+    if (op!=null && op.equalsIgnoreCase("sqr") ){
+         int n =Integer.parseInt(request.getParameter("n"));
+         out.println(n*n);
+    }
+     String friends[] ={"amit","suresh","mukesh","ganesh","mohan","sohan","ramakant","anit",
+            "babita","monika"};
+    if (op!=null && op.equalsIgnoreCase("search")){
+        String name = request.getParameter("name");
+        for (String s : friends)
+            if (s.contains(name))
+                out.println("<option value=\""+ s +"\"></option>");
+    }
     }
 
    

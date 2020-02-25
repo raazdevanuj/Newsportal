@@ -54,7 +54,7 @@
              </script>
     </head>
     <body class="bg-dark">
-        <form action="UserController?op=Add" method="post" onsubmit="return comparePwds(password.value,rpassword.value)&& checkage(dob.value);"> 
+        <form enctype="multipart/form-data" action="UserController?op=Add" method="post" onsubmit="return comparePwds(password.value,rpassword.value)&& checkage(dob.value);"> 
     <center>
         <h2  class="text-light bg-dark shadow ">REGISTRATION FORM </h2>
         <table class="bg-secondary text-white font-weight-bold" border="2" width="50%" class="form"> 
@@ -73,7 +73,7 @@
             </tr>
               <tr>
                 <td>Enter Password </td>
-                <td><input type="password" name="password" id="password" class="form-control" />
+                <td><input type="password" name="password" id="password" class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
                     <span><b>Password should be minimum 8 char and contains<br> one Upper, one Lower, one Special and one digit</b></span></td>
             </tr>
             <tr>
@@ -91,6 +91,7 @@
                 <td> <input type="radio" name="gender" value="Male"> Male</input>
                  <input type="radio" name="gender" value="Female"/>Female<br/>
                 </td>
+             <tr><td>Photo</td><td><input type="file" name="photo"</td></tr>
             </tr> 
                 <td>Select Your Hobbies </td>
                 <td>
