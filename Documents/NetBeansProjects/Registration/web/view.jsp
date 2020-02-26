@@ -52,7 +52,7 @@
                         <td><%=rs.getString("dob")%></td>   
                          <td><%=rs.getString("hobbies")%></td> 
                           <td><%=rs.getString("userId")%></td> 
-                          <td><%=rs.getString("photo")%></td>
+                        
                           <td><img src="<%=rs.getString("photo")%>" style="width:64px;height:64px;" class="img img-thumbnail"/></td>
                          <td><a href="edit.jsp?id=<%=rs.getString("id")%> " class="btn btn-success"><i class="fa fa-pencil"> Edit</i>  </a></td>
                          <td><a href="UserController?op=delete&id=<%=rs.getString("id")%>" class="btn btn-danger" onclick=" return confirmation()"><i class="fa fa-trash"  aria-hidden="true"> Delete</i></a></td>   

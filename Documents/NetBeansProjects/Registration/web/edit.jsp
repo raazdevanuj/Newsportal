@@ -6,6 +6,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script>
+            
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                   pic.src= e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+            </script>
     </head>
     <body  class="bg-dark">
         <% 
@@ -22,13 +36,18 @@
                 ResultSet rs=smt.executeQuery();
                 if(rs.next()){
             %>
-            <form  action="UserController?op=update&id=<%=rs.getString("id")%>" method="post">
+            <form  enctype="multipart/form-data" action="UserController?op=update&id=<%=rs.getString("id")%>" method="post">
                 <center>
                     <h1  class="text-light bg-dark shadow ">Update data</h1>
                     <table  class="bg-secondary text-white font-weight-bold" width="60%" border="1">
                         <tr>
                             <td>Name</td>
                             <td><input type="text" name="name" required="required" value="<%=rs.getString("name")%>"/></td>
+                            <td rowspan="6">
+                                
+                                 <img src="<%=rs.getString("photo")%>" style="width:200px;height: 200px" class="img" id="pic"/><br/>
+              <input type="file"  name="photo" id="photoInput" class="form-control"  onchange="readURL(this);" />
+                            </td>
                         </tr>
                    <tr>
                 <td>Father's Name </td>

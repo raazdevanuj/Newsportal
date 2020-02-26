@@ -51,6 +51,17 @@
                     }
                 };
             }
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                   pic.src= e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
              </script>
     </head>
     <body class="bg-dark">
@@ -91,7 +102,11 @@
                 <td> <input type="radio" name="gender" value="Male"> Male</input>
                  <input type="radio" name="gender" value="Female"/>Female<br/>
                 </td>
-             <tr><td>Photo</td><td><input type="file" name="photo"</td></tr>
+             <tr><td>Select Your Profile Image </td>
+           <td>
+                 <img src="assets/Images/ophoto.jpg" style="width:200px;height: 200px" class="img" id="pic"/><br/>
+              <input type="file" name="photo" id="photoInput" class="form-control"  onchange="readURL(this);" /></td>
+            </tr>
             </tr> 
                 <td>Select Your Hobbies </td>
                 <td>

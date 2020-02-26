@@ -178,6 +178,7 @@ public class UserController extends HttpServlet {
                     } else {
                         try {
                             photo = item.getName();
+                            System.out.println(photo);
                             imagepath = "media/user/" + photo ;
                             File savedFile = new File(getServletContext().getRealPath("/") + imagepath);
                             item.write(savedFile);
@@ -238,27 +239,80 @@ public class UserController extends HttpServlet {
   
 
      if (op!=null && op.equalsIgnoreCase("update")){
-        int id = Integer.parseInt(request.getParameter("id"));
+          boolean isMultipart=ServletFileUpload.isMultipartContent(request);
+         String name="",fname="",dob="",gender=""; int id=0,flag=0;
+          String hobbies[]=null,photo="",imagepath="",hbs="",ph="";
+           List<String> checkboxlist = new ArrayList();
+           if(!isMultipart){
+      
+               name = request.getParameter("name");
+        fname =request.getParameter("fname");
+        dob = request.getParameter("dob");
+        gender = request.getParameter("gender");
+        hobbies = request.getParameterValues("hobbies");
+         hbs="";
         
-        Connection con =null;
+           }
+           else
+           {
+               FileItemFactory factory = new DiskFileItemFactory();
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                List items = null;
+                try {
+                    items = upload.parseRequest(request);
+                } catch (FileUploadException e) {
+                    e.getMessage();
+                } 
+           
+        //JDBC Code
+        Iterator itr = items.iterator();
+                while (itr.hasNext()) {
+                    FileItem item = (FileItem) itr.next();
+                    if (item.isFormField()) {
+                        String fieldName = item.getFieldName();
+                        String fieldValue = item.getString();
+                        if (fieldName.equals("name"))  
+                            name = fieldValue;
+                        else if (fieldName.equals("fname"))  
+                            fname = fieldValue;
+                         else if (fieldName.equals("dob"))  
+                            dob = fieldValue;                   
+                        else if(fieldName.equals("gender"))
+                            gender=fieldValue;
+                        else if (fieldName.equals("hobbies"))
+                            checkboxlist.add(fieldValue);
+                        
+                    } else {
+                        try {
+                            photo = item.getName();
+                               if(photo=="")
+                                   flag=1;
+                           
+                            imagepath = "media/user/" + photo ;
+                            File savedFile = new File(getServletContext().getRealPath("/") + imagepath);
+                            item.write(savedFile);
+                        } catch (Exception e) {
+                            out.println("Error  " + e.getMessage());
+                        }
+                    }
+                    
+                    hbs="";
+                    for(String s : checkboxlist)
+                        hbs += s +",";
+                } 
+           }
+             id = Integer.parseInt(request.getParameter("id"));
+           System.out.println(flag);
+            Connection con =null;
         PreparedStatement smt = null;
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/training","root","root");
-            String sql = "update user set name=?,fname=?,dob=?,gender=?,hobbies=? where id=?";
-        String name = request.getParameter("name");
-        String fname =request.getParameter("fname");
-        String dob = request.getParameter("dob");
-        String gender = request.getParameter("gender");
-        String hobbies[] = request.getParameterValues("hobbies");
-        String hbs="";
-        
-        for (String h : hobbies)
-               hbs +=  h + ",";
-          hbs=hbs.substring(0,hbs.length()-1);
-            
-            
+            if(flag==1)
+            {
+             String sql = "update user set name=?,fname=?,dob=?,gender=?,hobbies=? where id=?";
+
             smt = con.prepareStatement(sql);
             smt.setString(1, name);
             smt.setString(2, fname);
@@ -266,11 +320,21 @@ public class UserController extends HttpServlet {
             smt.setString(4, gender);
             smt.setString(5, hbs);
             smt.setInt(6, id);
-            
-            //execute the command : executeUpdate()-for insert,update and delete or executeQuery()-for select
+            }
+            else{
+           String sql = "update user set name=?,fname=?,dob=?,gender=?,hobbies=?,photo=? where id=?";
 
+            smt = con.prepareStatement(sql);
+            smt.setString(1, name);
+            smt.setString(2, fname);
+            smt.setString(3, dob);
+            smt.setString(4, gender);
+            smt.setString(5, hbs);
+            smt.setString(6,imagepath);
+            smt.setInt(7, id);
+            }
             int n = smt.executeUpdate();
-            
+          
             smt.close();
             con.close();
             if (n>0)
