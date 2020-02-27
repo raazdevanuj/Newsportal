@@ -1,8 +1,4 @@
-<%-- 
-    Document   : register
-    Created on : 26 Feb, 2020, 10:20:59 PM
-    Author     : Abhishek Kumar
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="base.jsp"></jsp:include>

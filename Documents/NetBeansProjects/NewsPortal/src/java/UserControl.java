@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Iterator;
@@ -117,10 +118,6 @@ public class UserControl extends HttpServlet {
                 }
             }
 
-                //=============================================//
-               
-
-                //JDBC Code 
                 Connection con = null;
                 PreparedStatement smt = null;
                 encoded = Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
@@ -142,10 +139,10 @@ public class UserControl extends HttpServlet {
                     smt.close();
                     con.close();
                     if (n > 0) 
-                    out.println("Data Inserted to table ...");
-//                    {
-//                        response.sendRedirect("view.jsp");
-//                    }
+                   // out.println("Data Inserted to table ...");
+                    {
+                        response.sendRedirect("login.jsp");
+                    }
 
                 } catch (Exception e) {
                     System.out.println("Error : + " + e.getMessage());
@@ -158,7 +155,37 @@ public class UserControl extends HttpServlet {
 
                 }
             }
-
+            
+     if(op!=null && op.equalsIgnoreCase("login")){
+         String userid=request.getParameter("userid");
+         String password=request.getParameter("password");
+         Connection con=null;
+         PreparedStatement smt=null;
+         String encodedpas= Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
+          try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/training","root","root");
+                String sql="select * from reporter where userid=? and password=?";
+                smt=con.prepareStatement(sql);
+                smt.setString(1,userid);
+                smt.setString(2,encodedpas);
+                ResultSet rs= smt.executeQuery();
+                if(rs.next()){
+                    response.sendRedirect("welcome.jsp?name="+rs.getString("name"));
+                }
+                else
+                {
+                    response.sendRedirect("login.jsp?msg=Invaild Userid or Password");
+                   con.close();
+                   smt.close();
+                }
+            }
+          catch(Exception e)
+          {
+              System.out.println("Error"+e.getMessage());
+          }
+    }
     }
 
   
