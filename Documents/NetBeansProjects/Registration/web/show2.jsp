@@ -1,6 +1,6 @@
 <%-- 
-    Document   : welcome
-    Created on : 23-Feb-2020, 11:43:25
+    Document   : show2
+    Created on : 27-Feb-2020, 09:05:59
     Author     : Dell
 --%>
 
@@ -13,7 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
+      <h1>Contact Details </h1>
+         <%
             person  per = (person)session.getAttribute("person");
             String islogin = (String) session.getAttribute("loggedin");
             if (per==null){
@@ -27,7 +28,8 @@
             }
            
             %>
-        <h1>Welcome <%=per.getName()%> </h1>
-       
+            
+            <h2>contact no.: <%=per.getContact()%> <br/>
+            Address : <%= per.getAddress() %> </h2>
     </body>
 </html>
