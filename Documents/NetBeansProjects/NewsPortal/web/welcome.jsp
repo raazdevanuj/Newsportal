@@ -8,7 +8,7 @@
     </head>
     <body>
         
-        <h1>Welcome <%=request.getParameter("name")%> </h1>
+        <h1>Welcome <%=request.getParameter("contact")%> </h1>
        
     </body>
 </html>
