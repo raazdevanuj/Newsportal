@@ -4,9 +4,33 @@
         <servlet-name>VendorController</servlet-name>
         <servlet-class>com.controllers.VendorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategoryController</servlet-name>
+        <servlet-class>com.controllers.CategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubCatController</servlet-name>
+        <servlet-class>SubCatController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubController</servlet-name>
+        <servlet-class>com.controllers.SubController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>VendorController</servlet-name>
         <url-pattern>/VendorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryController</servlet-name>
+        <url-pattern>/CategoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubCatController</servlet-name>
+        <url-pattern>/SubCatController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubController</servlet-name>
+        <url-pattern>/SubController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

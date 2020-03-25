@@ -12,19 +12,17 @@
         </div>
         <div class="col-sm-4 text-center hidden-xs"></div>
         <div class="col-sm-4 text-right hidden-xs">
-            <button type="button" class="btn btn-sm ml-4" data-toggle="modal" data-target="#myModal">Login</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</button>
      
-            <a>  &nbsp; or</a>
+            <a>  &nbsp; or &nbsp;</a>
         
-         <button type="button" class="btn btn-sm ml-4" data-toggle="modal" data-target="#Modal">Register</button>
+         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">Register</button>
         </div>
-        
+    </div>
+</div>
 
         <div class="modal" id="myModal">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="container">
-                        <h1 class="form-heading">login Form</h1>
                         <div class="login-form">
                             <div class="main-div">
                                 <div class="panel">
@@ -62,13 +60,13 @@
                                     <div class="forgot">
                                         <a href="reset.html">Forgot password?</a>
                                     </div>
-                                    <input type="submit" name="submit"  value="Login" class="btn btn-primary"/>
+                                    <input type="submit" name="sumit"  value="Login" class="btn btn-primary"/>
 
                                 </form>
                             </div>
                             
                           <% 
-    if(request.getParameter("submit")!=null) {
+    if(request.getParameter("sumit")!=null) {
         
         String role = request.getParameter("role");
          if (role.equals("log")){
@@ -130,13 +128,9 @@
                     </div>
 
                 </div>
-            </div>
-        </div>
+          
         <div class="modal" id="Modal">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="container">
-                        <h1 class="form-heading">Registration</h1>
                         <div class="login-form">
                             <div class="main-div">
                                 <form>
@@ -157,10 +151,6 @@
                     </div>
 
                 </div>
-            </div>
-        </div>
                                 
-                           
-    </div>
-</div>
+ 
                                 

@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fyndal</title>
-
-    
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  crossorigin="anonymous">
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-   
-    <link href="assets/css/modern-business.css" rel="stylesheet">
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/log.css" rel="stylesheet" type="text/css">
-
-    <script>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  crossorigin="anonymous">
+        <jsp:include page="base.jsp"></jsp:include>
+            <script>
 
                 function readURL(input, preview) {
                     if (input.files && input.files[0]) {
@@ -31,29 +17,32 @@
                     }
                 }
             </script>
-   
-</head>
+        </head>
+        <body>
+            <nav class="top-bar">
 
-<body>
-    <nav class="top-bar"><jsp:include page="topbar.jsp"></jsp:include></nav>
-   <jsp:include page="navbar.jsp"></jsp:include>
+            <jsp:include page="topbar.jsp"></jsp:include> 
+            </nav>
+        <jsp:include page="navbar.jsp"></jsp:include>
 
-     <jsp:include page="slider.jsp"></jsp:include>
 <jsp:useBean class="com.beans.Vendor" id="vendor" scope="session"></jsp:useBean>
-<br>
-       
-<div class="section">
-    <center>
+          <section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">E-COMMERCE CONTACT</h1>
+        <p class="lead text-muted mb-0">Contact Page build with Bootstrap 4 !</p>
+    </div>
+</section> 
+               
+             <center>
         <div class="container">
-
             <div class="row">
-                 <div class="col-md-3" style="position:absolute;right:0px;">
+                <div class="col-md-3" style="position:absolute;right:0px;">
                     <%if (request.getParameter("submit")!=null){%>
                     <jsp:setProperty name="vendor" property="*"></jsp:setProperty>
                     <form action="VendorController?op=add" method="post" enctype="multipart/form-data">
                         <div class="card">     
                             <div class="card-header bg-primary text-white"><i class="fa fa-registered"></i> add Photo Here</div>
-                    <img src="" style="width:200px; height: 200px;" id="preview" class="form-control"/> <br/>
+                    <img scr="" style="width:200px; height: 200px;" id="preview" class="form-control"/> <br/>
                     <input type="file" name="image" onchange="readURL(this,preview);" class="form-control btn btn-success"/> <br/>
                     <input type="submit" value="Save to Data base " class="btn btn-primary" name="submit"/>
                     </form>
@@ -99,20 +88,12 @@
                     </form>
                 </div>
                 
-            </div>        
+                 
+            </div>
         </div>
-     </div>                        
-        <!-- /.container -->
-        </center>
-    </div>
-    <!-- /.section -->
+    </center>
+                      
 
-     
-     
-    <jsp:include page="footer.jsp"></jsp:include>
-  <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/modern-business.js"></script>
+        <jsp:include page="footer.jsp"></jsp:include>
 </body>
-
 </html>

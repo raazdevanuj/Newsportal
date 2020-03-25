@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+   Vendor Dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -20,6 +20,13 @@
 </head>
 
 <body class="">
+     <%
+        if(session.getAttribute("vendor")==null)
+        {
+            response.sendRedirect("../index.jsp");
+            return;
+        }
+        %>
   <div class="wrapper ">
       <jsp:include page="sidebar.jsp"></jsp:include>
     <div class="main-panel">
