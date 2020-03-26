@@ -1,5 +1,7 @@
 
 
+<%@page import="com.beans.Product"%>
+<%@page import="com.daos.ProductDao"%>
 <%@page import="com.beans.Category"%>
 <%@page import="com.daos.CategoryDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>All Sub-Category</title>
+  <title>All Products</title>
    <script>
             function confirmation(){
                 if(confirm("Do you really wanna delete"))
@@ -58,19 +60,20 @@
       
 		  <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All Sub_Category Data </h6>
+              <h6 class="m-0 font-weight-bold text-primary">All Product Data </h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                       <th>ID</th>
                       <th>Name</th>
-                      <th>Category</th>
+                       <th>BRAND</th>
                       <th>Photo</th>
-                      <th>UPDATE</th>
-                      <th>DELETE</th>
+                      <th>Price</th>
+                      <th>Description</th>
+                      <th>UPDATE || DELETE</th>
                     
                     </tr>
                   </thead>
@@ -78,29 +81,31 @@
                     <tr>
                        <th>ID</th>
                       <th>Name</th>
-                       <th>Category</th>
+                       <th>BRAND</th>
                       <th>Photo</th>
-                      <th>UPDATE</th>
-                      <th>DELETE</th>
+                      <th>Price</th>
+                      <th>Description</th>
+                      <th>UPDATE || DELETE</th>
                     </tr>
                   </tfoot>
                   <tbody>
                       <%
-                      Sub_CategoryDao cd= new Sub_CategoryDao();
-                      CategoryDao d=new CategoryDao();
-                      Category cat=new Category();
+                     ProductDao pd=new ProductDao();
                       
-                      ArrayList<Sub_category> sub=cd.getAllRecords();
-                      for(Sub_category sd:sub){
-                          cat=d.getById(sd.getCategory_id());
+                      ArrayList<Product> pro=pd.getAllRecords();
+                      for(Product p:pro){
+                     
                       %>
+                       
                     <tr>
-                      <td><%=sd.getSub_category_id()%></td>
-                      <td><%=sd.getSub_category_name() %></td>
-                      <td><%=cat.getCategory_name()%></td>
-                      <td><img src="../<%=sd.getPhoto()%>" style="width:150px; height: 150px;"/></td>
-                      <td><a href="editSub.jsp?id=<%=sd.getSub_category_id()%>" class="btn btn-primary"><i class="fa fa-edit">&nbsp; Update</i></a></td>
-                      <td><a href="../SubController?op=delete&id=<%=sd.getSub_category_id()%>" class="btn badge-danger" onclick="return confirmation()"><i class="fa fa-trash">&nbsp; Delete</i></a></td>
+                      <td><%=p.getProduct_id()%></td>
+                      <td><%=p.getProduct_name()%></td>
+                      <td><%=p.getProduct_Brand()%></td>
+                      <td><img src="../<%=p.getPhoto()%>" style="width:150px; height: 150px;"/></td>
+                      <td><%=p.getProduct_price()%></td>
+                      <td><%=p.getProduct_desc()%></td>
+                      <td><a href="editPro.jsp?id=<%=p.getProduct_id()%>" class="btn btn-primary ml-4"><i class="fa fa-edit">&nbsp; Update</i></a>||
+                      <a href="../ProductController?op=delete&id=<%=p.getProduct_id()%>" class="btn badge-danger" onclick="return confirmation()"><i class="fa fa-trash">&nbsp; Delete</i></a></td>
                     </tr>
                     <%}%>
                    

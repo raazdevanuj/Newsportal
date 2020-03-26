@@ -50,7 +50,7 @@ public class SubController extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         String op = request.getParameter("op");
-        if (op != null && op.equals("Add")) {
+        if (op != null && op.equals("add")) {
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
             String imagePath = "";
             HttpSession session = request.getSession();

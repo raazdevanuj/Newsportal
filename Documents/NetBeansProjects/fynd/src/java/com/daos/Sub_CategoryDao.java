@@ -72,7 +72,36 @@ public class Sub_CategoryDao {
     }
     return sub;
    }
-   
+   public ArrayList<Sub_category> getAllRecordsId(int id){
+    ArrayList<Sub_category> sub=new ArrayList();
+    ConnectionPool cp=ConnectionPool.getInstance();
+    cp.initialize();
+    Connection con=cp.getConnection();
+    if(con!=null){
+        try
+        {
+         String sql="select * from sub_category where category_id=?";
+         PreparedStatement smt=con.prepareStatement(sql);
+         smt.setInt(1, id);
+         ResultSet rs=smt.executeQuery();
+         while(rs.next()){
+             Sub_category sub_category=new Sub_category();
+            sub_category.setSub_category_id(rs.getInt("sub_category_id"));
+            sub_category.setSub_category_name(rs.getString("sub_category_name"));
+            sub_category.setPhoto(rs.getString("photo"));
+            sub_category.setCategory_id(rs.getInt("category_id"));
+             sub.add(sub_category);
+         }
+         smt.close();
+         cp.putConnection(con);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    return sub;
+   }
    public boolean update(Sub_category sub_category)
    {
        boolean status=false;

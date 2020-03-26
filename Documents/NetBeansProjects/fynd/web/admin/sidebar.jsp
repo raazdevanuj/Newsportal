@@ -60,13 +60,13 @@
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Reporter </span>
+          <span>Manage Product </span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="addReporter.jsp">Add Reporters</a>
-            <a class="collapse-item" href="viewallrep.jsp">View All Reporters</a>
+            <a class="collapse-item" href="addProduct.jsp">Add Product</a>
+            <a class="collapse-item" href="viewProduct.jsp">View All Productss</a>
            
          </div>
         </div>
@@ -75,16 +75,39 @@
       <hr class="sidebar-divider">
 
        <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseF" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Reports</span>
+          <span>Manage Shop</span>
         </a>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseF" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="categorybasednews.jsp">Category based News</a>
-            <a class="collapse-item" href="reporterbasednews.jsp">Reporter based News</a>
-            <a class="collapse-item" href="fliter.jsp">Filter News </a>
+            <a class="collapse-item" href=" viewVendor.jsp">List of Vendor</a>
+            <a class="collapse-item" href="reporterbasednews.jsp">List of shop</a>
+            <a class="collapse-item" href="fliter.jsp">Pending Shops</a>
+             <a class="collapse-item" href="fliter.jsp">Approved Shops</a>
+             <a class="collapse-item" href="fliter.jsp">Rejected Shops</a>
+            
+          </div>
+        </div>
+      </li> 
+
+       <hr class="sidebar-divider">
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsers" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Report</span>
+        </a>
+        <div id="collapsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Actions...</h6>
+            <a class="collapse-item" href=" viewVendor.jsp">Shop Based Sub_Category</a>
+            <a class="collapse-item" href="reporterbasednews.jsp">Shop Based Product</a>
+            <a class="collapse-item" href="fliter.jsp">Sub_category based shop</a>
+             <a class="collapse-item" href="fliter.jsp">Product based shop</a>
+             <a class="collapse-item" href="fliter.jsp">filer Product</a>
+            
           </div>
         </div>
       </li> 
