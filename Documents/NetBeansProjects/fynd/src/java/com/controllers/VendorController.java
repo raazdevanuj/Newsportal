@@ -59,6 +59,21 @@ public class VendorController extends HttpServlet {
          
          
      }
+     if(op!=null && op.equals("update")){
+         boolean isMultipart=ServletFileUpload.isMultipartContent(request);
+         String imagePath="";
+         HttpSession session=request.getSession();
+         Vendor vendor=(Vendor) session.getAttribute("vend");
+         if(isMultipart)
+             imagePath=FileUploader.getUploadedPath(getServletContext(), "media/vendor", request);
+         vendor.setPhoto(imagePath);        
+         VendorDao vd= new VendorDao();
+         if(vd.update(vendor)){
+             out.println("<script>alert('Vendor Updated Completed!')</script>");
+              out.println("<script>window.location='shop/dashboard.jsp'</script>");
+         }
+        
+     }
+     
     }
-
 }

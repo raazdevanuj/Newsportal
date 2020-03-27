@@ -1,7 +1,15 @@
- <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+ <%@page import="com.beans.Vendor"%>
+<%@page import="com.daos.VendorDao"%>
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-              <b> <h3> Welcome ${vendor.vendor_name}</h3></b>
+                <% VendorDao vd =new VendorDao();
+          
+          Vendor vend=(Vendor) session.getAttribute("vendor");
+            String p=vd.getnameid(vend.getVendor_id());
+          
+          %>
+              <b><h3>Welcome <%=p%></h3></b>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

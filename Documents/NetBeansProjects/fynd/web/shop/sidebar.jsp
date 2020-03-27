@@ -1,19 +1,29 @@
- <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+ <%@page import="com.beans.Vendor"%>
+<%@page import="com.daos.VendorDao"%>
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
      
       <div class="logo text-center">
-          <img src="../${vendor.photo}" style="border-radius: 0%; width:100px; height: 80px;"/><br/>
+        
+          <% VendorDao vd =new VendorDao();
+          
+          Vendor vend=(Vendor) session.getAttribute("vendor");
+            String p=vd.getphotoid(vend.getVendor_id());
+          
+          %>
+
+          <img src="../<%=p%>" style="border-radius: 10%; width:100px; height: 80px;"/><br/>
           
         </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="dashboard.jsp">
+          <li class="nav-item active">
+            <a class="nav-link " href="dashboard.jsp">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+          <li class="nav-item">
+            <a class="nav-link" href="viewvendor.jsp">
               <i class="material-icons">person</i>
               <p>User Profile</p>
             </a>
