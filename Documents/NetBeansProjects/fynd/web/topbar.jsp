@@ -85,7 +85,7 @@
             {
                 session.setAttribute("vendor",vendor);
                 
-                 out.println("<script>window.location='shop/dashboard.jsp'</script>");
+                 out.println("<script>window.location='vendor/dashboard.jsp'</script>");
                  out.println("<script>alert('Welcome :"+ vendor.getVendor_name()+ "');</script>");
             }
             else

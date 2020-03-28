@@ -96,6 +96,52 @@ public class VendorDao {
      }
      return status;
     }  
+     public boolean updat1(Vendor vendor) {
+       boolean status =false;
+        ConnectionPool cp= ConnectionPool.getInstance();
+     cp.initialize();
+     Connection con=cp.getConnection();
+     if(con!=null){
+         try
+         {
+          String sql="update vendor set vendor_name=?,email_id=?,mobile=? where vendor_id=?";
+         PreparedStatement smt=con.prepareStatement(sql);
+         smt.setString(1,vendor.getVendor_name());
+         smt.setString(2, vendor.getEmail_id());
+          smt.setString(3,vendor.getMobile());
+         smt.setInt(4, vendor.getVendor_id());
+        
+         if(smt.executeUpdate()>0)
+             status=true;
+         }
+         catch(Exception e){
+             System.out.println("Error :"+e.getMessage());
+         }
+     }
+     return status;
+    }  
+      public boolean updat2(String pass,int id) {
+       boolean status =false;
+        ConnectionPool cp= ConnectionPool.getInstance();
+     cp.initialize();
+     Connection con=cp.getConnection();
+     if(con!=null){
+         try
+         {
+          String sql="update vendor set password=? where vendor_id=?";
+         PreparedStatement smt=con.prepareStatement(sql);
+         smt.setString(1,pass);
+         smt.setInt(2,id);
+        
+         if(smt.executeUpdate()>0)
+             status=true;
+         }
+         catch(Exception e){
+             System.out.println("Error :"+e.getMessage());
+         }
+     }
+     return status;
+    }  
     public Vendor getByid(int id) {
         Vendor vendor = null;
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -176,6 +222,30 @@ public class VendorDao {
         }
 
         return s;
-    }  
+    }
+       public String getemailid(int id) {
+      String s="";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                String sql = "select email_id from vendor where vendor_id=?";
+                PreparedStatement smt = con.prepareStatement(sql);
+                smt.setInt(1,id);
+    
+                ResultSet rs = smt.executeQuery();
+                if (rs.next()) {
+                  s=rs.getString("email_id");
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("DBError :" + e.getMessage());
+            }
+        }
+
+        return s;
+    }
 }
 

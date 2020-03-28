@@ -70,7 +70,7 @@ public class VendorController extends HttpServlet {
          VendorDao vd= new VendorDao();
          if(vd.update(vendor)){
              out.println("<script>alert('Vendor Updated Completed!')</script>");
-              out.println("<script>window.location='shop/dashboard.jsp'</script>");
+              out.println("<script>window.location='vendor/viewprofile.jsp'</script>");
          }
         
      }
