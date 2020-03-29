@@ -39,7 +39,7 @@
    <jsp:include page="navbar.jsp"></jsp:include>
 
      <jsp:include page="slider.jsp"></jsp:include>
-<jsp:useBean class="com.beans.Vendor" id="vendor" scope="session"></jsp:useBean>
+<jsp:useBean class="com.beans.Vendor" id="vendo" scope="session"></jsp:useBean>
 <br>
        
 <div class="section">
@@ -49,13 +49,13 @@
             <div class="row">
                  <div class="col-md-3" style="position:absolute;right:0px;">
                     <%if (request.getParameter("submit")!=null){%>
-                    <jsp:setProperty name="vendor" property="*"></jsp:setProperty>
+                    <jsp:setProperty name="vendo" property="*"></jsp:setProperty>
                     <form action="VendorController?op=add" method="post" enctype="multipart/form-data">
                         <div class="card">     
                             <div class="card-header bg-primary text-white"><i class="fa fa-registered"></i> add Photo Here</div>
                     <img src="" style="width:200px; height: 200px;" id="preview" class="form-control"/> <br/>
-                    <input type="file" name="image" onchange="readURL(this,preview);" class="form-control btn btn-success"/> <br/>
-                    <input type="submit" value="Save to Data base " class="btn btn-primary" name="submit"/>
+                    <input type="file" name="photo" onchange="readURL(this,preview);" class="form-control btn btn-success"/> <br/>
+                    <input type="submit" value="Register" class="btn btn-primary" name="submit"/>
                     </form>
                     <%
                 }%>
@@ -72,25 +72,25 @@
                         <table class="table">
                             
                                 <td>Enter Name </td>
-                                <td><input type="text" name="vendor_name" class="form-control" value="${vendor.vendor_name}"/></td>
+                                <td><input type="text" name="vendor_name" class="form-control" value="${vendo.vendor_name}"/></td>
                             </tr> 
                             <tr>
                                 <td>Enter Contact </td>
-                                <td><input type="text" name="mobile" class="form-control" value="${vendor.mobile}"/></td>
+                                <td><input type="text" name="mobile" class="form-control" value="${vendo.mobile}"/></td>
                             </tr> 
                             
                              <tr>
                                 <td>Enter Email </td>
-                                <td><input type="email" name="email_id" class="form-control" value="${vendor.email_id}"/></td>
+                                <td><input type="email" name="email_id" class="form-control" value="${vendo.email_id}"/></td>
                             </tr>                       
                              <tr>
                                 <td>Enter Username </td>
-                                <td><input type="text" name="userid" class="form-control" value="${vendor.userid}"/></td>
+                                <td><input type="text" name="userid" class="form-control" value="${vendo.userid}"/></td>
                             </tr> 
                             
                               <tr>
                                 <td>Enter Password </td>
-                                <td><input type="password" name="password" class="form-control" value="${vendor.password}"/></td>
+                                <td><input type="password" name="password" class="form-control" value="${vendo.password}"/></td>
                             </tr> 
                            
                             <input type="hidden" name="status" value="approved"/>

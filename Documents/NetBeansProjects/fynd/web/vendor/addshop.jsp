@@ -1,4 +1,5 @@
 
+<%@page import="com.beans.Vendor"%>
 <%@page import="java.util.Base64"%>
 <%@page import="com.daos.VendorDao"%>
 <!DOCTYPE html>
@@ -11,9 +12,9 @@
         <meta name="author" content="">
         <title>Dashboard - Vendor</title>
         <jsp:include page="base.jsp"></jsp:include>
-           <jsp:useBean class="com.beans.Vendor" id="vendor" scope="session"></jsp:useBean>
-     <script type="text/javascript">
-         function readURL(input, preview) {
+        <jsp:useBean class="com.beans.Shop" id="shope" scope="session"></jsp:useBean>
+            <script type="text/javascript">
+                function readURL(input, preview) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
 
@@ -33,9 +34,11 @@
                 response.sendRedirect("../index.jsp");
                 return;
             }
+             Vendor vf = (Vendor) session.getAttribute("vendor");
+          int id = vf.getVendor_id();
         %>
         <jsp:include page="navbar.jsp"></jsp:include>
-       
+        <jsp:setProperty name="shope" property="*"></jsp:setProperty>
 
             <div id="layoutSidenav">
             <jsp:include page="sidebar.jsp"></jsp:include>
@@ -54,68 +57,76 @@
                         </div>
                         <div class="container-fluid mt-n10">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header">Shop Details</div>
+                                        <!--<div class="card-header">Shop Details</div>-->
                                         <div class="card-body">
                                             <div class="row">
 
-                                                <div class="col-md-6">
-                                                    <form  method="post" onsubmit="return comparePwds(password.value, rpassword.value);"> 
+                                                <div class="col-md-8">
+                                                     <div class="card">     
+                                                            <div class="card-header bg-primary text-white"> Shop Details</div>
+                                                            
+                                                    <form  method="post"> 
                                                         <center>
                                                             <h2  class="text-light bg-gradient-primary-to-secondary">Add Shop Details </h2>
                                                             <table class="table" > 
                                                                 <!--pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"-->
                                                                 <tr>
                                                                     <td>Enter Shop Name </td>
-                                                                    <td><input type="text" name="shop_name"  class="form-control" /></td>
+                                                                    <td><input type="text" name="shop_name"   required="required" class="form-control" value="${shope.shop_name}" /></td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td>Enter Shop City</td>
+                                                                    <td><input type="text" name="shop_city" required="required" class="form-control" value="${shope.shop_city}"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Enter Shop Location</td>
+                                                                    <td><input type="text" name="shop_locality" required="required" class="form-control" value="${shope.shop_locality}"/></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Enter Shop Address</td>
-                                                                    <td><input type="text" name="shop_address" id="rpassword" class="form-control"/></td>
+                                                                    <td><input type="text" name="shop_address" required="required" class="form-control" value="${shope.shop_address}"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <input type="hidden" name="vendor_id" value="<%=id%>"/>
 
-                                                                    <td class="text-center" colspan="2">
+                                                            <tr>
+                                                                <td class="text-center" colspan="2">
+                                                                    <input type="submit" name="sumit" value="Next" class=" btn btn-primary"  id="sumit"/> 
+                                                                </td>
+                                                            </tr>
 
-                                                                        <input type="submit" name="submit" value="submit" class=" btn btn-primary"  id="submit"/> 
-                                                                    </td>
-                                                                </tr>
+                                                        </table>
+                                                    </center>
+                                                </form>
+                                            </div>
+                                            </div> 
 
-                                                            </table>
-                                                        </center>
+                                            <div class="col-md-4">
+                                                <%if (request.getParameter("sumit") != null) {%>
+                                                
+                                                    <form action="../ShopController?op=add" method="post" enctype="multipart/form-data">
+                                                        <div class="card">     
+                                                            <div class="card-header bg-primary text-white">add Shop Banner</div>
+                                                            <img src="" style="width:200px; height: 200px;" id="preview" class="form-control"/> <br/>
+                                                            <input type="file" name="photo" required="required" onchange="readURL(this, preview);" class="form-control btn btn-success"/> <br/>
+                                                            <input type="submit" value="Submit " class="btn btn-primary" name="submit"/>
                                                     </form>
-
-                                                </div>  
+                                                <%
+                        }%>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </main>
+                    </div>
+                </main>
                 <jsp:include page="footer.jsp"></jsp:include>
                 </div>
             </div>
         <jsp:include page="base1.jsp"></jsp:include>
-    </body>
-    <% if(request.getParameter("submit")!=null){%>
- 
-
-     <%
-         String password = request.getParameter("password");
-   String encodedPassword =Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
-    
-    
-     VendorDao rd=new VendorDao();
-    if(rd.updat2(encodedPassword,vendor.getVendor_id())){
-    out.println("<script>alert('Password updated Successfully');</script>");
-               out.println("<script>window.location = 'changepass.jsp';</script>");
-    }
-else
-    {
-    out.println("<script>alert('Password not updated Successfully');</script>");
-               out.println("<script>window.location = 'changepass.jsp';</script>");
-     }
-  }%>
+        </body>
+   
 </html>

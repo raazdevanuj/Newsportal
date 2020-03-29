@@ -58,18 +58,22 @@
                                                 <table class="table  text-center table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                                     <thead>
                                                         <tr>
-                                                            <th>Shop Id</th>
-                                                            <th>All Shop Details</th>
-                                                            <th>Shop Banner</th>
-
+                                                           
+                                                            <th>Shop Name</th>
+                                                            <th>Shop Location</th>
+                                                            <th>Shop City</th>
+                                                            <th>Shop Address</th>
+                                                            <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tfoot>
                                                         <tr>
-                                                             <th>Shop Id</th>
-                                                            <th>All Shop Details</th>
-                                                            <th>Shop Banner</th>
-
+                                                           
+                                                            <th>Shop Name</th>
+                                                            <th>Shop Location</th>
+                                                            <th>Shop City</th>
+                                                            <th>Shop Address</th>
+                                                            <th>Actions</th>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
@@ -77,44 +81,26 @@
                                                         ArrayList<Shop> sdd = sd.getAllRecordsbyid(id);
                                                         for (Shop d : sdd) {
                                                     %>
-                                                    
-                                                       
-                                                    
+
+
+
+
                                                     <tr>
-                                                         <td><%=d.getShop_id()%></td>
-                                                        <td alignment="center">
+                                                       
+                                                        <td><%=d.getShop_name()%></td>
 
-                                                            <table class=" card-body table  text-center table-bordered table-hover">
 
-                                                                    <tr>
-                                                                        <td> Shop Name </td>
-                                                                        <td><%=d.getShop_name()%></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Shop Location</td>
-                                                                        <td><%=d.getShop_locality()%></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Shop City </td>
-                                                                        <td><%=d.getShop_city()%></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Shop Address </td>
-                                                                        <td><%=d.getShop_address()%></td>
-                                                                    </tr>
-                                                                   
-                                                            </table>
-                                                                <a href="editshop.jsp?id=<%=d.getShop_id()%>" class="btn btn-primary col-md-12">&nbsp; Update</a>
-                                                                           
-                                                        </td>
+                                                        <td><%=d.getShop_locality()%></td>
+
+                                                        <td><%=d.getShop_city()%></td>
+
+                                                        <td><%=d.getShop_address()%></td>
                                                         <td>
-                                                           
-                                                               
-                                                                    <img src="../<%=d.getShop_Banner()%>" style="border-radius: 0%; width:150px; height: 150px;"/>
 
-                                                            
-                                                            
-                                                        </td>   
+
+                                                            <a href="editaddress.jsp?id=<%=d.getShop_id()%>" class="btn btn-primary col-md-12">&nbsp; Update</a>
+
+                                                        </td>
                                                     </tr>
                                                     <%}%>
                                                 </tbody>

@@ -21,9 +21,9 @@
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
                 <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                        <a class="nav-link" href="layout-static.html">Add Shop Details</a>
-                        <a class="nav-link" href="layout-dark.html">view Shop Details</a>
-                        <a class="nav-link" href="layout-rtl.html">Address Details</a>
+                        <a class="nav-link" href="addshop.jsp">Add Shop Details</a>
+                        <a class="nav-link" href="viewshop.jsp">view Shop Details</a>
+                        <a class="nav-link" href="manageaddress.jsp">Address Details</a>
                         <!--<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsPageHeaders" aria-expanded="false" aria-controls="collapseLayoutsPageHeaders">Page Headers-->
                             <!--<div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>-->
                             
@@ -36,7 +36,7 @@
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
                 <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav">
-                        <a class="nav-link" href="alerts.html">Attach Sub-Category Details</a>
+                        <a class="nav-link" href="attachsubcat.jsp">Attach Sub-Category Details</a>
                         <a class="nav-link" href="avatars.html">View Sub-Category Details<span class="badge badge-primary ml-2">New!</span>
                         </a>
                     </nav>

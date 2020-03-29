@@ -11,10 +11,18 @@ package com.beans;
  */
 public class Shop {
     int shop_id,vendor_id;
-    String shop_name,shop_Banner,shop_address,shop_locality,status;
+    String shop_name,shop_Banner,shop_address,shop_locality,shop_city;
 
     public int getShop_id() {
         return shop_id;
+    }
+
+    public String getShop_city() {
+        return shop_city;
+    }
+
+    public void setShop_city(String shop_city) {
+        this.shop_city = shop_city;
     }
 
     public void setShop_id(int shop_id) {
@@ -61,12 +69,5 @@ public class Shop {
         this.shop_locality = shop_locality;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
     
 }

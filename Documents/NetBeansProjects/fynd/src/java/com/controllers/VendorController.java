@@ -44,15 +44,15 @@ public class VendorController extends HttpServlet {
          String encodedpass="";
          String imagePath="";
          HttpSession session=request.getSession();
-         Vendor vendor=(Vendor) session.getAttribute("vendor");
+         Vendor vendo=(Vendor) session.getAttribute("vendo");
          if(isMultipart)
              imagePath=FileUploader.getUploadedPath(getServletContext(), "media/vendor", request);
-         vendor.setPhoto(imagePath);
-         encodedpass=Base64.getEncoder().encodeToString(vendor.getPassword().getBytes("UTF-8"));
-         vendor.setPassword(encodedpass);
+         vendo.setPhoto(imagePath);
+         encodedpass=Base64.getEncoder().encodeToString(vendo.getPassword().getBytes("UTF-8"));
+         vendo.setPassword(encodedpass);
          VendorDao vd= new VendorDao();
-         if(vd.add(vendor)){
-             session.removeAttribute("vendor");
+         if(vd.add(vendo)){
+             session.removeAttribute("vendo");
              out.println("<script>alert('Vendor Registration Completed!  Please Login')</script>");
              out.println("<script>window.location='index.jsp'</script>");
          }

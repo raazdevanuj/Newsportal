@@ -10,6 +10,7 @@ import com.daos.Sub_CategoryDao;
 import com.utility.FileUploader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,9 +42,30 @@ public class SubController extends HttpServlet {
                 out.println("<script>window.location = 'admin/viewsubcat.jsp';</script>");
             }
         }
-
+         if(op!=null && op.equals("cat")){
+             int id=Integer.parseInt(request.getParameter("id"));
+              Sub_CategoryDao cd = new Sub_CategoryDao();
+              ArrayList<Sub_category> sut=cd.getAllRecordsId(id);
+              String output="";
+              boolean flag=true;
+              for(Sub_category sc:sut){
+                  if(flag)
+                  output+="<tr>";
+                  
+                  output+="<td class='text-center'><div class='card'><button  class=\"btn btn-cyan\">\n" +
+"                                                     <input type=\"checkbox\" class=\"largerCheckbox\" name='subcat' value="+sc.getSub_category_id()+">"+sc.getSub_category_name()+"</input>\n" +
+"                                                     <img src='../"+sc.getPhoto()+"' style='width:150px; height: 150px'/>\n" +
+"                                                     </button></div></td>";
+                  
+                  if(!flag) output+="</tr>";
+                  flag=!flag;
+              }
+              out.println(output);
+        
     }
 
+    }
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
