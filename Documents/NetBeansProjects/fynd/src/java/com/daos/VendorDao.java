@@ -8,6 +8,7 @@ package com.daos;
 import com.beans.Vendor;
 import com.pool.ConnectionPool;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Base64;
 
 
@@ -120,6 +121,29 @@ public class VendorDao {
      }
      return status;
     }  
+      public boolean updat3(int id,String stat) {
+       boolean status =false;
+        ConnectionPool cp= ConnectionPool.getInstance();
+     cp.initialize();
+     Connection con=cp.getConnection();
+     if(con!=null){
+         try
+         {
+          String sql="update vendor set status=? where vendor_id=?";
+         PreparedStatement smt=con.prepareStatement(sql);
+         smt.setString(1,stat);
+         smt.setInt(2, id);
+        
+        
+         if(smt.executeUpdate()>0)
+             status=true;
+         }
+         catch(Exception e){
+             System.out.println("Error :"+e.getMessage());
+         }
+     }
+     return status;
+    }  
       public boolean updat2(String pass,int id) {
        boolean status =false;
         ConnectionPool cp= ConnectionPool.getInstance();
@@ -173,6 +197,102 @@ public class VendorDao {
         }
 
         return vendor;
+    }
+     public ArrayList<Vendor> getallRecords() {
+       ArrayList<Vendor> ven=new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                String sql = "select * from vendor";
+                PreparedStatement smt = con.prepareStatement(sql);
+    
+                ResultSet rs = smt.executeQuery();
+                while(rs.next()) {
+                    Vendor vendor = new Vendor();
+                    vendor.setVendor_id(rs.getInt("Vendor_id"));
+                    vendor.setMobile(rs.getString("mobile"));
+                    vendor.setVendor_name(rs.getString("Vendor_name"));
+                    vendor.setEmail_id(rs.getString("email_id"));
+                    vendor.setPhoto(rs.getString("photo"));
+                    vendor.setStatus(rs.getString("status"));
+                    vendor.setUserid(rs.getString("userid"));
+                    vendor.setPassword(rs.getString("password"));
+                    ven.add(vendor);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("DBError :" + e.getMessage());
+            }
+        }
+
+        return ven;
+    }
+      public ArrayList<Vendor> getallRecordsappro() {
+       ArrayList<Vendor> ven=new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                String sql = "select * from vendor where status='approved'";
+                PreparedStatement smt = con.prepareStatement(sql);
+    
+                ResultSet rs = smt.executeQuery();
+                while(rs.next()) {
+                    Vendor vendor = new Vendor();
+                    vendor.setVendor_id(rs.getInt("Vendor_id"));
+                    vendor.setMobile(rs.getString("mobile"));
+                    vendor.setVendor_name(rs.getString("Vendor_name"));
+                    vendor.setEmail_id(rs.getString("email_id"));
+                    vendor.setPhoto(rs.getString("photo"));
+                    vendor.setStatus(rs.getString("status"));
+                    vendor.setUserid(rs.getString("userid"));
+                    vendor.setPassword(rs.getString("password"));
+                    ven.add(vendor);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("DBError :" + e.getMessage());
+            }
+        }
+
+        return ven;
+    }
+      public ArrayList<Vendor> getallRecordspend() {
+       ArrayList<Vendor> ven=new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                String sql = "select * from vendor where status='pending'";
+                PreparedStatement smt = con.prepareStatement(sql);
+    
+                ResultSet rs = smt.executeQuery();
+                while(rs.next()) {
+                    Vendor vendor = new Vendor();
+                    vendor.setVendor_id(rs.getInt("Vendor_id"));
+                    vendor.setMobile(rs.getString("mobile"));
+                    vendor.setVendor_name(rs.getString("Vendor_name"));
+                    vendor.setEmail_id(rs.getString("email_id"));
+                    vendor.setPhoto(rs.getString("photo"));
+                    vendor.setStatus(rs.getString("status"));
+                    vendor.setUserid(rs.getString("userid"));
+                    vendor.setPassword(rs.getString("password"));
+                    ven.add(vendor);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("DBError :" + e.getMessage());
+            }
+        }
+
+        return ven;
     }
     
      public String getphotoid(int id) {

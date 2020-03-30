@@ -77,16 +77,15 @@
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseF" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Shop</span>
+          <span>Manage Vendor</span>
         </a>
         <div id="collapseF" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href=" viewVendor.jsp">List of Vendor</a>
-            <a class="collapse-item" href="reporterbasednews.jsp">List of shop</a>
-            <a class="collapse-item" href="fliter.jsp">Pending Shops</a>
-             <a class="collapse-item" href="fliter.jsp">Approved Shops</a>
-             <a class="collapse-item" href="fliter.jsp">Rejected Shops</a>
+            <a class="collapse-item" href=" viewvendor.jsp">List of Vendor</a>
+            <a class="collapse-item" href="approvedvendor.jsp">Approved Vendor </a>
+            <a class="collapse-item" href="pendingvendor.jsp">Pending Vendor</a>
+            
             
           </div>
         </div>
@@ -102,12 +101,10 @@
         <div id="collapsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href=" viewVendor.jsp">Shop Based Sub_Category</a>
-            <a class="collapse-item" href="reporterbasednews.jsp">Shop Based Product</a>
-            <a class="collapse-item" href="fliter.jsp">Sub_category based shop</a>
-             <a class="collapse-item" href="fliter.jsp">Product based shop</a>
-             <a class="collapse-item" href="fliter.jsp">filer Product</a>
-            
+            <a class="collapse-item" href=" shopbasedsub.jsp">Shop Based Sub_Category</a>
+            <a class="collapse-item" href="shopbasedprod.jsp">Shop Based Product</a>
+            <a class="collapse-item" href="subcatbasedshop.jsp">Sub_category based shop</a>
+             <a class="collapse-item" href="filter.jsp">Filter by</a>            
           </div>
         </div>
       </li> 
@@ -121,11 +118,11 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Other Action</span>
         </a>
-        <div id="collapseFive" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+        <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="viewsub.jsp">View Subscribers</a>
-            <a class="collapse-item" href="viewenq.jsp">View Enquiry</a>
+            <a class="collapse-item" href="#">View Subscribers</a>
+            <a class="collapse-item" href="#">View Enquiry</a>
         </div>
         </div>
       </li> 

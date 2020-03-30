@@ -37,7 +37,7 @@
                 <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav">
                         <a class="nav-link" href="attachsubcat.jsp">Attach Sub-Category Details</a>
-                        <a class="nav-link" href="avatars.html">View Sub-Category Details<span class="badge badge-primary ml-2">New!</span>
+                        <a class="nav-link" href="viewsubcat.jsp">View Sub-Category Details<span class="badge badge-primary ml-2">New!</span>
                         </a>
                     </nav>
                 </div>
@@ -46,15 +46,15 @@
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
                 <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav">
-                        <a class="nav-link" href="animations.html">Attach Product Details</a>
-                        <a class="nav-link" href="background.html">View Product Details<span class="badge badge-primary ml-2">New!</span></a>
+                        <a class="nav-link" href="attachproduct.jsp">Attach Product Details</a>
+                        <a class="nav-link" href="viewproduct.jsp">View Product Details<span class="badge badge-primary ml-2">New!</span></a>
                         <!--<a class="nav-link" href="borders.html">Borders</a><a class="nav-link" href="lift.html">Lift<span class="badge badge-primary ml-2">New!</span></a><a class="nav-link" href="shadows.html">Shadows</a><a class="nav-link" href="typography.html">Typography</a>-->
                     </nav>
                 </div>
                 
                 <div class="sidenav-menu-heading">Reports</div>
-                <a class="nav-link" href="charts.html"><div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                    view all visited</a><a class="nav-link" href="tables.html"><div class="nav-link-icon"><i data-feather="filter"></i></div>
+                <a class="nav-link" href="viewall.jsp"><div class="nav-link-icon"><i data-feather="bar-chart"></i>
+                    </div>view all visited</a><a class="nav-link" href="requiry.jsp"><div class="nav-link-icon"><i data-feather="filter"></i></div>
                     other</a>
             </div>
         </div>

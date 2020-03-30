@@ -129,6 +129,73 @@ public class ProductDao {
        
     return product;
    }  
+   public ArrayList<Product> getbysub(int id){
+    ArrayList<Product> pd=new ArrayList();
+    ConnectionPool cp=ConnectionPool.getInstance();
+    cp.initialize();
+    Connection con=cp.getConnection();
+    if(con!=null){
+        try
+        {
+         String sql = "select * from product where product_id in (select product_id from scp where sub_category_id=?)";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, id);
+            ResultSet rs= smt.executeQuery();
+         while(rs.next()){
+             Product product=new Product();
+             product.setProduct_id(rs.getInt("product_id"));
+             product.setProduct_name(rs.getString("product_name"));
+             product.setProduct_Brand(rs.getString("product_Brand"));
+             product.setProduct_price(rs.getString("product_price"));
+             product.setPhoto(rs.getString("photo"));
+             product.setProduct_desc(rs.getString("product_desc"));
+          
+             pd.add(product);
+         }
+         smt.close();
+         cp.putConnection(con);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    return pd;
+   } 
+  public ArrayList<Product> getbyshop(int id){
+    ArrayList<Product> pd=new ArrayList();
+    ConnectionPool cp=ConnectionPool.getInstance();
+    cp.initialize();
+    Connection con=cp.getConnection();
+    if(con!=null){
+        try
+        {
+         String sql = "select * from product where product_id in (select product_id from shop_product where shop_id=?)";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, id);
+            ResultSet rs= smt.executeQuery();
+         while(rs.next()){
+             Product product=new Product();
+             product.setProduct_id(rs.getInt("product_id"));
+             product.setProduct_name(rs.getString("product_name"));
+             product.setProduct_Brand(rs.getString("product_Brand"));
+             product.setProduct_price(rs.getString("product_price"));
+             product.setPhoto(rs.getString("photo"));
+             product.setProduct_desc(rs.getString("product_desc"));
+          
+             pd.add(product);
+         }
+         smt.close();
+         cp.putConnection(con);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    return pd;
+   } 
+  
    public scp  getRelId(int id){
       scp sc=null;
        ConnectionPool cp = ConnectionPool.getInstance();
@@ -271,6 +338,31 @@ public class ProductDao {
                 
                     if (smt.executeUpdate() > 0) { status = true;}
                 }
+//                 }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("Error :" + e.getMessage());
+            }
+        }
+
+        return status;
+    } 
+ public boolean removebyid(int id) {
+        boolean status = false;
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                 PreparedStatement smt= null;
+                    String sql = "Delete from shop_product where product_id=?";
+                    smt = con.prepareStatement(sql);
+                    smt.setInt(1, id);
+                   
+                
+                    if (smt.executeUpdate() > 0) { status = true;}
+                
 //                 }
                 smt.close();
                 cp.putConnection(con);

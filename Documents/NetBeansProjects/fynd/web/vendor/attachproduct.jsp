@@ -22,11 +22,11 @@
         } 
     </style> 
      <script>
-             function selectcat(x, y) {
+          function selectprod(x, y) {
                     //alert(x);
                     ajax = new XMLHttpRequest();
 
-                    ajax.open("GET", "../SubController?op=cat&id="+x, true);
+                    ajax.open("GET", "../ProductController?op=prod&id="+x, true);
                     ajax.send();
                     ajax.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200)
@@ -34,8 +34,22 @@
                     };
 
                 }
+                 
+             function selectcat(x, y) {
+                    //alert(x);
+                    ajax = new XMLHttpRequest();
+
+                    ajax.open("GET", "../SubController?op=sub&id="+x, true);
+                    ajax.send();
+                    ajax.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200)
+                            y.innerHTML = this.responseText;
+                    };
+
+                }
+                 
                 function selectAll(){
-				var items=document.getElementsByName('subcat');
+				var items=document.getElementsByName('prodd');
 				for(var i=0; i<items.length; i++){
 					if(items[i].type=='checkbox')
 						items[i].checked=true;
@@ -43,7 +57,7 @@
 			}
 			
 			function UnSelectAll(){
-				var items=document.getElementsByName('subcat');
+				var items=document.getElementsByName('prodd');
 				for(var i=0; i<items.length; i++){
 					if(items[i].type=='checkbox')
 						items[i].checked=false;
@@ -72,7 +86,7 @@
                                 <div class="page-header-content">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                        <span>Sub-Category</span>
+                                        <span>Product</span>
                                     </h1>
                                 </div>
                             </div>
@@ -83,15 +97,17 @@
                                     <div class="card mb-5">
                                         <div class="card-header">
                                             
-                                            <h3>Add Sub-Category Details</h3>           
+                                            <h3>Add Product Details</h3>           
                                                     
                                         </div>
                                          <div class="card-body">   
-                                             <form action="../SubController?op=subadd" method="post">
+                                             <form action="../ProductController?op=prod" method="post">
                                              <table class="table text-success text-center">
-                                                 <tr><td colspan="2">
-                                                    <button  class="btn btn-outline-blue" type="button">Select Shop By Name</button></td></tr>
-                                                <tr> 
+                                                 <tr><td>
+                                                         <button  class="btn btn-outline-blue" type="button">Select Shop By Name</button><br>
+                                                 <label>Select any one shop</label></td>
+                                                     <td>
+                                                  
                                              <%
                                              ShopDao sd= new ShopDao();
                                              ArrayList<Shop> spp= sd.getAllRecordsbyid(id);
@@ -100,27 +116,26 @@
                                                
                                              
                                              %>
-                                             
-                                             <td>
-                                                 <button  class="btn btn-cyan form-control" type="button">
-                                                     <input type="checkbox" class="largerCheckbox form-control" name="shop" value="<%=s.getShop_id()%>"><%=s.getShop_name()%></input>
-                                                 </button> </td>  <% count++;  if(count==3){out.println("</tr>");
-                                                  count=0;}else{out.println("&nbsp;&nbsp;");} }%>
+                                            <button  class="btn btn-cyan form-control" type="button">
+                                                <input type="radio" class="largerCheckbox form-control" name="shop" required="required" id="shop" value="<%=s.getShop_id()%>" onclick="selectcat(this.value,cid)" ><%=s.getShop_name()%></input>
+                                                 </button> 
+                                                            
+                                                         
+                                                        <%}%>
+                                             </td>
                                                      
                                                  </tr>
                                              
-                                                 <tr><td><button  class="btn btn-cyan form-control" ><label> Select Category</label></button></td>
+                                                 <tr>
+                                                     <td>
+                                                          <button  class="btn btn-outline-blue" type="button">
+                                                             Select Sub-Category</button>
+                                                     </td>
                                                      <td>
                                                         
-                                                         <select class="btn btn-cyan form-control"  id="cid" onclick="selectcat(this.value,tab);">
-                                                             <option value="-1">Select Category</option>
-                                                         <%
-                                                         CategoryDao cd=new CategoryDao();
-                                                         ArrayList<Category> c=cd.getAllRecords();
-                                                         for(Category cat:c){
-                                                         %>
-                                                         <option value="<%=cat.getCategory_id()%>"><%=cat.getCategory_name()%></option>
-                                                             <%}%>
+                                                         <select class="btn btn-cyan form-control"  name="cat" id="cid" onclick="selectprod(this.value,tab)">
+                                                             <option value="-1">Select Sub-Category</option>
+                                                         
                                                          </select>
                                                          
                                                      </td>
@@ -134,7 +149,7 @@
                                                          <table id="tab" class="table text-success text-center">
                                                              <tr>
                                                                  <td>
-                                                                     View Sub_Category
+                                                                     View Product
                                                                  </td>
                                                              </tr>  
                                                          </table>

@@ -57,6 +57,38 @@ public class ProductController extends HttpServlet {
                 out.println("<script>window.location = 'admin/viewProduct.jsp';</script>");
             }
         }
+         if (op != null && op.equals("del")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+          ProductDao cd=new ProductDao();
+            if (cd.removebyid(id)) {
+                out.println("<script>alert('Deletion Successed!');</script>");
+                out.println("<script>window.location = 'vendor/viewproduct.jsp';</script>");
+            } else {
+                out.println("<script>alert('Deletion Failed!');</script>");
+                out.println("<script>window.location = 'vendor/viewproduct.jsp';</script>");
+            }
+        }
+         
+          if (op != null && op.equals("prod")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+          ProductDao cd=new ProductDao();
+          ArrayList<Product> p=cd.getbysub(id);
+          String output="<tr><td><div class='card'>All Products</div></tr>";
+          boolean flag=true;
+          for(Product ro:p){
+               if(flag)
+                  output+="<tr>";
+                  
+                  output+="<td class='text-center'><div class='card'><button class=\"btn btn-cyan\" disabled>\n" +
+"                                                     <input type=\"checkbox\" class=\"largerCheckbox\" name='prodd' value="+ro.getProduct_id()+">"+ro.getProduct_name()+"</input>\n" +
+"                                                     <br>"+ro.getProduct_Brand()+"<br> MRP :"+ro.getProduct_price()+"<br>"+ro.getProduct_desc()+"<img src='../"+ro.getPhoto()+"' style='width:150px; height: 150px'/>\n" +
+"                                                     </button></div></td>";
+                  
+                  if(!flag) output+="</tr>";
+                  flag=!flag;
+          }
+          out.println(output);
+          }
     }
 
       @Override
@@ -119,5 +151,17 @@ public class ProductController extends HttpServlet {
             }
         }  
          }
+          if(op!=null&&op.equals("prod")){
+            String shop=request.getParameter("shop");
+            String cat=request.getParameter("cat");
+            String sub[]=request.getParameterValues("prodd");
+            Sub_CategoryDao sd=new Sub_CategoryDao();
+            if(sd.addshopprod(shop,cat,sub))
+            {
+                out.println("<script>alert('Product Successfully Added');</script>");
+                    out.println("<script>window.location='vendor/viewproduct.jsp';</script>"); 
+            }
+            
+        }
     }   
 }

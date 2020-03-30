@@ -102,6 +102,36 @@ public class Sub_CategoryDao {
     }
     return sub;
    }
+    public ArrayList<Sub_category> getAllRecordsShopId(int id){
+    ArrayList<Sub_category> sub=new ArrayList();
+    ConnectionPool cp=ConnectionPool.getInstance();
+    cp.initialize();
+    Connection con=cp.getConnection();
+    if(con!=null){
+        try
+        {
+         String sql="select * from sub_category where sub_category_id in (select sub_category_id from sub_category_shop where shop_id=?)";
+         PreparedStatement smt=con.prepareStatement(sql);
+         smt.setInt(1, id);
+         ResultSet rs=smt.executeQuery();
+         while(rs.next()){
+             Sub_category sub_category=new Sub_category();
+            sub_category.setSub_category_id(rs.getInt("sub_category_id"));
+            sub_category.setSub_category_name(rs.getString("sub_category_name"));
+            sub_category.setPhoto(rs.getString("photo"));
+            sub_category.setCategory_id(rs.getInt("category_id"));
+             sub.add(sub_category);
+         }
+         smt.close();
+         cp.putConnection(con);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    return sub;
+   }
    public boolean update(Sub_category sub_category)
    {
        boolean status=false;
@@ -219,5 +249,85 @@ public class Sub_CategoryDao {
        
     return sub_category;
    }
- 
+   public String  getByPROId(int id){
+      String sub_category="";
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select sub_category_name from sub_category where sub_category_id in(select sub_category_id from shop_product where product_id=?)";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, id);
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                sub_category=rs.getString(1);
+          
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return sub_category;
+   }
+ public boolean addshopsub(String shop[],String sub[]){
+     boolean status =false;
+     ConnectionPool cp=ConnectionPool.getInstance();
+     cp.initialize();
+     Connection con=cp.getConnection();
+     if(con!=null){
+         try{
+            PreparedStatement smt=null; int k=0;
+             for(String sh:shop){
+             for(String s:sub){
+                  String sql="insert into sub_category_shop (shop_id,sub_category_id) values(?,?)";
+                   smt = con.prepareStatement(sql);
+                   smt.setInt(1, Integer.parseInt(sh));
+                   smt.setInt(2,Integer.parseInt(s));
+                   k=smt.executeUpdate();
+             }
+             }
+             if(k>0)
+                 status=true;
+             
+                 smt.close();
+               cp.putConnection(con);
+         }catch(Exception e){
+             System.out.println("Error"+e.getMessage());
+         }
+     }
+     return status;
+ }
+ public boolean addshopprod(String shop,String cat,String sub[]){
+     boolean status =false;
+     ConnectionPool cp=ConnectionPool.getInstance();
+     cp.initialize();
+     Connection con=cp.getConnection();
+     if(con!=null){
+         try{
+            PreparedStatement smt=null; int k=0;
+            
+             for(String s:sub){
+                  String sql="insert into shop_product (shop_id,sub_category_id,product_id) values(?,?,?)";
+                   smt = con.prepareStatement(sql);
+                   smt.setInt(1, Integer.parseInt(shop));
+                    smt.setInt(2, Integer.parseInt(cat));
+                   smt.setInt(3,Integer.parseInt(s));
+                   k=smt.executeUpdate();
+             }
+             
+             if(k>0)
+                 status=true;
+             
+                 smt.close();
+               cp.putConnection(con);
+         }catch(Exception e){
+             System.out.println("Error"+e.getMessage());
+         }
+     }
+     return status;
+ }
 }

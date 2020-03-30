@@ -6,6 +6,7 @@
 package com.controllers;
 
 import com.beans.Sub_category;
+import com.daos.ShopDao;
 import com.daos.Sub_CategoryDao;
 import com.utility.FileUploader;
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class SubController extends HttpServlet {
                   if(flag)
                   output+="<tr>";
                   
-                  output+="<td class='text-center'><div class='card'><button  class=\"btn btn-cyan\">\n" +
+                  output+="<td class='text-center'><div class='card'><button  class=\"btn btn-cyan\" disabled>\n" +
 "                                                     <input type=\"checkbox\" class=\"largerCheckbox\" name='subcat' value="+sc.getSub_category_id()+">"+sc.getSub_category_name()+"</input>\n" +
 "                                                     <img src='../"+sc.getPhoto()+"' style='width:150px; height: 150px'/>\n" +
 "                                                     </button></div></td>";
@@ -63,6 +64,19 @@ public class SubController extends HttpServlet {
               out.println(output);
         
     }
+          if(op!=null && op.equals("sub")){
+             int id=Integer.parseInt(request.getParameter("id"));
+             ShopDao cd=new ShopDao();
+             
+              ArrayList<Sub_category> sut=cd.getAllSubbySub(id);
+              String output="<option value='-1'>Select Sub Category</option>";
+             
+              for(Sub_category sc:sut){
+              
+              output+="<option value="+sc.getSub_category_id()+">"+sc.getSub_category_name()+"</option>";
+              }
+              out.println(output);
+          }
 
     }
    
@@ -127,6 +141,17 @@ public class SubController extends HttpServlet {
                 }
 
             }
+        }
+        if(op!=null&&op.equals("subadd")){
+            String shop[]=request.getParameterValues("shop");
+            String sub[]=request.getParameterValues("subcat");
+            Sub_CategoryDao sd=new Sub_CategoryDao();
+            if(sd.addshopsub(shop, sub))
+            {
+                out.println("<script>alert('Sub_Category Successfully Added');</script>");
+                    out.println("<script>window.location='vendor/viewsubcat.jsp';</script>"); 
+            }
+            
         }
 
     }

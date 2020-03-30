@@ -7,6 +7,7 @@ package com.daos;
 
 import com.beans.Category;
 import com.beans.Shop;
+import com.beans.Sub_category;
 import com.pool.ConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,6 +96,33 @@ public class ShopDao {
                     shop.setShop_id(rs.getInt("shop_id"));
                     shop.setVendor_id(rs.getInt("vendor_id"));
                     cat.add(shop);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("Error:" + e.getMessage());
+            }
+        }
+        return cat;
+    }
+    public ArrayList<Sub_category> getAllSubbySub(int id) {
+        ArrayList<Sub_category> cat = new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                String sql = "select * from sub_category where sub_category_id in (select sub_category_id from sub_category_shop where shop_id=?)";
+                PreparedStatement smt = con.prepareStatement(sql);
+                smt.setInt(1, id);
+                ResultSet rs = smt.executeQuery();
+                while (rs.next()) {
+                   Sub_category sub=new Sub_category();
+                   sub.setSub_category_name(rs.getString("sub_category_name"));
+                   sub.setPhoto(rs.getString("photo"));
+                   sub.setSub_category_id(rs.getInt("sub_category_id"));
+                    
+                    cat.add(sub);
                 }
                 smt.close();
                 cp.putConnection(con);
