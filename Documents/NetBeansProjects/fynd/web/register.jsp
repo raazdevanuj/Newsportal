@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Fyndal</title>
-
+<link rel="icon" href="media/slider1/loki.png"/>
     
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  crossorigin="anonymous">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -16,7 +16,7 @@
     <link href="assets/css/modern-business.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/log.css" rel="stylesheet" type="text/css">
-
+ <jsp:include page="base.jsp"></jsp:include>
     <script>
 
                 function readURL(input, preview) {

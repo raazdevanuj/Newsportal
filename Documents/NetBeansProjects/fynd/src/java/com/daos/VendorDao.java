@@ -6,6 +6,7 @@
 package com.daos;
 
 import com.beans.Vendor;
+import com.beans.user;
 import com.pool.ConnectionPool;
 import java.sql.*;
 import java.util.ArrayList;
@@ -367,5 +368,6 @@ public class VendorDao {
 
         return s;
     }
+       
 }
 

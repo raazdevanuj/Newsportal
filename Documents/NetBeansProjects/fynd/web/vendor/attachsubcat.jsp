@@ -48,7 +48,12 @@
 					if(items[i].type=='checkbox')
 						items[i].checked=false;
 				}
-			}		
+			}
+        $(document).ready(function(){
+    $("#01").click(function(){
+        $(".subcat").prop("checked", true);
+    });
+});
                 </script>
         <jsp:include page="base.jsp"></jsp:include>
         </head>

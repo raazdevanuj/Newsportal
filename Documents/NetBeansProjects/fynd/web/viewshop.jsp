@@ -24,7 +24,18 @@
 
         <jsp:include page="slider.jsp"></jsp:include>
 
-        <jsp:include page="homecontainer.jsp"></jsp:include>
+      <jsp:include page="shopviewcon.jsp"></jsp:include>
+       <div class="section">
+
+        <div class="container">
+
+            <div class="row">
+      
+              
+            </div>
+        </div>
+       </div>
+           
         <jsp:include page="footer.jsp"></jsp:include>
         <script src="assets/js/jquery-1.10.2.js"></script>
         <script src="assets/js/bootstrap.js"></script>

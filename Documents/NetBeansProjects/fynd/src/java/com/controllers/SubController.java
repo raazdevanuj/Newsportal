@@ -53,7 +53,7 @@ public class SubController extends HttpServlet {
                   if(flag)
                   output+="<tr>";
                   
-                  output+="<td class='text-center'><div class='card'><button  class=\"btn btn-cyan\" disabled>\n" +
+                  output+="<td class='text-center'><div class='card'><button  id=\"01\" class=\"btn btn-cyan\" disabled>\n" +
 "                                                     <input type=\"checkbox\" class=\"largerCheckbox\" name='subcat' value="+sc.getSub_category_id()+">"+sc.getSub_category_name()+"</input>\n" +
 "                                                     <img src='../"+sc.getPhoto()+"' style='width:150px; height: 150px'/>\n" +
 "                                                     </button></div></td>";

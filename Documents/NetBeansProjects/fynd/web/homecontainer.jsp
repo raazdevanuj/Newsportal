@@ -1,85 +1,101 @@
+<%@page import="com.beans.Sub_category"%>
+<%@page import="com.daos.Sub_CategoryDao"%>
+<%@page import="com.beans.Category"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.daos.CategoryDao"%>
+ 
+ <script>
+
+                function selectsub(x, y) {
+                    //alert(x);
+                    ajax = new XMLHttpRequest();
+
+                    ajax.open("GET", "./ProductController?op=sub&id=" + x, true);
+                    ajax.send();
+                    ajax.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200)
+                            y.innerHTML = this.responseText;
+                    };
+
+                }
+                function selectsh(x){
+                   var val1=x.options[x.selectedIndex].value;
+                   if(val1==-1) alert('Please select Category First ans Sub-Category');
+                   else
+                    window.location.assign("viewshops.jsp?sid="+val1);
+                }
+            </script>    
 <div class="section">
 
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-check-circle"></i> Bootstrap 3 Built</h3>
-                    <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-pencil"></i> Ready to Style &amp; Edit</h3>
-                    <p>You're ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-folder-open"></i> Many Page Options</h3>
-                    <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
-                </div>
+              <div class="card">
+                  <div class="card-footer">
+                <h4 class="text-center border-danger-soft"> 
+                    <select name="category_id" id="cid" onchange="selectsub(this.value, sid)">
+                        <option value="-1">Select Category Name</option>
+
+                        <%
+                            CategoryDao cd = new CategoryDao();
+                            ArrayList<Category> cat = cd.getAllRecords();
+                            for (Category sd : cat) {
+                        %>
+                        <option value="<%=sd.getCategory_id()%>"><%=sd.getCategory_name()%></option>
+                        <%}%>
+                    </select>
+                    <select name="sub_category_id" id="sid">
+                        <option value="-1"> Select Sub-Category Name</option>
+                    </select>
+
+                    <button id="search"  class="bg-warning" onclick="selectsh(sid)"><i class="fa fa-search">Search</i></button>
+                </h4>                                
+                  </div>
             </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section -->
-
-    <div class="section-colored text-center">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Modern Business: A Clean &amp; Simple Full Website Template by Start Bootstrap</h2>
-                    <p>A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.</p>
-                    <hr>
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section-colored -->
-
-    <div class="section">
-
-        <div class="container">
-
-            <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Display Some Work on the Home Page Portfolio</h2>
+                    <h2>Here Some Popular Category</h2>
                     <hr>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=101%>">
+                        <h3 class="text-center">Home Appliances</h3>
+                        <img class="img-responsive img-home-portfolio" src="media/slider1/photo1.jpg" width="700" height="300">
+                        
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=102%>">
+                        <h3 class="text-center">Books</h3>
+                       <img class="img-responsive img-home-portfolio" src="media/slider1/photo2.jpg" width="700" height="250">
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=104%>">
+                        <h3 class="text-center">Clothes</h3>
+                       <img class="img-responsive img-home-portfolio" src="media/slider1/photo3.jpg" width="700" height="250">
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=105%>">
+                          <h3 class="text-center">Computer & Accessories</h3>
+                       <img class="img-responsive img-home-portfolio" src="media/slider1/photo4.jpg" width="700" height="250">
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=103%>">
+                         <h3 class="text-center">Beauty Products</h3>
+                       <img class="img-responsive img-home-portfolio" src="media/slider1/photo7.jpg" width="700" height="250">
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                    <a href="sub_catindex.jsp?id=<%=108%>">
+                          <h3 class="text-center">Grocery</h3>
+                       <img class="img-responsive img-home-portfolio" src="media/slider1/photo6.jpg" width="700" height="250">
+                       
                     </a>
                 </div>
             </div>
@@ -90,28 +106,23 @@
 
     </div>
     <!-- /.section -->
-
+  <h2 class="text-center">Here Some Popular Shop and their Offers</h2>
     <div class="section-colored">
-
+       
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2>Modern Business Features Include:</h2>
+                    <h2>RBTO.SHOP</h2>
                     <ul>
-                        <li>Bootstrap 3 Framework</li>
-                        <li>Mobile Responsive Design</li>
-                        <li>Predefined File Paths</li>
-                        <li>Working PHP Contact Page</li>
-                        <li>Minimal Custom CSS Styles</li>
-                        <li>Unstyled: Add Your Own Style and Content!</li>
-                        <li>Font-Awesome fonts come pre-installed!</li>
-                        <li>100% <strong>Free</strong> to Use</li>
-                        <li>Open Source: Use for any project, private or commercial!</li>
+                        <li>It has Amazing offer</li>
+                        <li>Reach Shop today</li>
+                        <li> <strong>Upto 50% off</strong></li>
+                       
                     </ul>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <img class="img-responsive" src="http://placehold.it/700x450/ffffff/cccccc">
+                    <img class="img-responsive" src="media/slider1/banner1.jpg">
                 </div>
             </div>
             <!-- /.row -->
@@ -128,20 +139,14 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <img class="img-responsive" src="http://placehold.it/700x450">
+                    <img class="img-responsive" src="media/slider1/banner2.jpg">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2>Modern Business Features Include:</h2>
+                    <h2>NEW TECHNOLOGY INTRODUCED</h2>
                     <ul>
-                        <li>Bootstrap 3 Framework</li>
+                        <li>Buy one and get one</li>
                         <li>Mobile Responsive Design</li>
-                        <li>Predefined File Paths</li>
-                        <li>Working PHP Contact Page</li>
-                        <li>Minimal Custom CSS Styles</li>
-                        <li>Unstyled: Add Your Own Style and Content!</li>
-                        <li>Font-Awesome fonts come pre-installed!</li>
-                        <li>100% <strong>Free</strong> to Use</li>
-                        <li>Open Source: Use for any project, private or commercial!</li>
+                        
                     </ul>
                 </div>
             </div>
@@ -152,19 +157,3 @@
 
     </div>
     <!-- /.section -->
-
-    <div class="container">
-
-        <div class="row well">
-            <div class="col-lg-8 col-md-8">
-                <h4>'Modern Business' is a ready-to-use, Bootstrap 3 updated, multi-purpose HTML theme!</h4>
-                <p>For more templates and more page options that you can integrate into this website template, visit Start Bootstrap!</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <a class="btn btn-lg btn-primary pull-right" href="http://startbootstrap.com">See More Templates!</a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container -->

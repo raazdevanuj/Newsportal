@@ -8,6 +8,7 @@ package com.daos;
 import com.beans.Category;
 import com.beans.Shop;
 import com.beans.Sub_category;
+import com.beans.user;
 import com.pool.ConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -249,4 +250,73 @@ public boolean update(Shop shop) {
 
         return status;
     }
+     public ArrayList<Shop> getAllRecordsbypro(int pid,user use) {
+         //System.out.println(pid);
+             
+        ArrayList<Shop> cat = new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                 PreparedStatement smt=null;
+                String sql = "select * from shop where shop.shop_city=? and shop_id in (select shop_id from shop_product where product_id=?)";
+                 smt= con.prepareStatement(sql);
+                 smt.setString(1, use.getCity());
+                 smt.setInt(2, pid);
+                ResultSet rs = smt.executeQuery();
+                while (rs.next()) {
+                    Shop shop = new Shop();
+                    shop.setShop_name(rs.getString("shop_name"));
+                    shop.setShop_address(rs.getString("shop_address"));
+                    shop.setShop_Banner(rs.getString("shop_Banner"));
+                    shop.setShop_city(rs.getString("shop_city"));
+                    shop.setShop_locality(rs.getString("shop_locality"));
+                    shop.setShop_id(rs.getInt("shop_id"));
+                    shop.setVendor_id(rs.getInt("vendor_id"));
+                    cat.add(shop);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("Error:" + e.getMessage());
+            }
+        }
+        return cat;
+    }
+     public ArrayList<Shop> getAllRecordsbysub(int pid,user use) {
+         //System.out.println(pid);
+             
+        ArrayList<Shop> cat = new ArrayList();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        cp.initialize();
+        Connection con = cp.getConnection();
+        if (con != null) {
+            try {
+                 PreparedStatement smt=null;
+                String sql = "select * from shop where shop.shop_city=? and shop_id in (select shop_id from shop_product where sub_category_id=?)";
+                 smt= con.prepareStatement(sql);
+                 smt.setString(1, use.getCity());
+                 smt.setInt(2, pid);
+                ResultSet rs = smt.executeQuery();
+                while (rs.next()) {
+                    Shop shop = new Shop();
+                    shop.setShop_name(rs.getString("shop_name"));
+                    shop.setShop_address(rs.getString("shop_address"));
+                    shop.setShop_Banner(rs.getString("shop_Banner"));
+                    shop.setShop_city(rs.getString("shop_city"));
+                    shop.setShop_locality(rs.getString("shop_locality"));
+                    shop.setShop_id(rs.getInt("shop_id"));
+                    shop.setVendor_id(rs.getInt("vendor_id"));
+                    cat.add(shop);
+                }
+                smt.close();
+                cp.putConnection(con);
+            } catch (Exception e) {
+                System.out.println("Error:" + e.getMessage());
+            }
+        }
+        return cat;
+    }
+
 }

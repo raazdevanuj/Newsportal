@@ -4,7 +4,7 @@
         <footer>
             
                 <div>
-                    <center><p class="text-white bg-dark">Copyright &copy; Company 2013</p></center>
+                    <center><p class="text-white bg-dark">Copyright &copy; Fyndal 2020</p></center>
                 </div>
             
         </footer>

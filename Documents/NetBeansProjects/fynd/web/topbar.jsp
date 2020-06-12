@@ -1,25 +1,20 @@
 
+<%@page import="com.beans.user"%>
+<%@page import="com.daos.UserDao"%>
 <%@page import="com.beans.Admin"%>
 <%@page import="com.daos.AdminDao"%>
 <%@page import="com.beans.Vendor"%>
 <%@page import="com.daos.VendorDao"%>
-<div class="container">
+<!--<div class="container">
     <div class="row">
-        <div class="col-sm-4 hidden-xs">
-            <span class="nav-text">
-                <i class="fa fa-phone" aria-hidden="true"></i>  +123  8910   &nbsp;  &nbsp;
-                <i class="fa fa-envelope" aria-hidden="true"></i> raazdevanuj@gmail.com</span>
+        <div class="col">
+           
         </div>
         <div class="col-sm-4 text-center hidden-xs"></div>
         <div class="col-sm-4 text-right hidden-xs">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</button>
-     
-            <a>  &nbsp; or &nbsp;</a>
-        
-         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">Register</button>
-        </div>
+            </div>
     </div>
-</div>
+</div>-->
 
         <div class="modal" id="myModal">
             <div class="modal-dialog">
@@ -117,12 +112,34 @@
                  
             }
         }
+        
+    
+      if (role.equals("userLogin")) {
+         
+          UserDao usee= new UserDao();
+            user use = usee.isValid(userid, password);
+            
+            if(use!=null) {
+                
+                session.setAttribute("use", use);
+                 out.println("<script>alert('Welcome :"+ use.getName()+ "');</script>");
+                 out.println("<script>window.location='index.jsp'</script>");
+                 // out.println("<script>alert('Welcome : Admin ');</script>");
+                //response.sendRedirect("");
+            }
+            else {
+                String msg="invalid userid or password";
+                 out.println("<script>alert('Invalid Userid or Password');</script>");
+                out.println("<script>window.location='index.jsp'</script>");
+               
+                 
+            }
+        }
         else
       {
          out.println("<script>window.location='index.jsp'</script>");  
       }
-    }
-               
+    }          
           %>    
                         </div>
                     </div>
@@ -139,7 +156,7 @@
                                         <a href="register.jsp" class="btn btn-primary">Register for Vendor</a>
                                     </div>
                                     <div class="form-group">
-                                         <a href="#" class="btn btn-primary">Register for User</a>
+                                         <a href="register1.jsp" class="btn btn-primary">Register for User</a>
                                        
                                     </div>
 
@@ -151,6 +168,43 @@
                     </div>
 
                 </div>
+              
+                      <div class="modal" id="Mdal">
+            <div class="modal-dialog">
+                        <div class="login-form">
+                            <div class="main-div">
+                                <form>
+
+                                   <div class="form-group">
+
+
+                                        <input type="text" class="form-control" id="City" name="City" placeholder="City">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="Locality" name="Locality" placeholder="Locality">
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input type="number" class="form-control" id="Pincode" name="Pincode" placeholder="Pincode">
+
+                                    </div>
+
+
+                                    <input type="submit" name="conti"  value="continue" class="btn btn-primary"/>
+
+
+                                    
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+      </div>
+                  
+                 
+ 
                                 
  
                                 

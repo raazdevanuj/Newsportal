@@ -104,8 +104,8 @@
                       <td><img src="../<%=p.getPhoto()%>" style="width:150px; height: 150px;"/></td>
                       <td><%=p.getProduct_price()%></td>
                       <td><%=p.getProduct_desc()%></td>
-                      <td><a href="editPro.jsp?id=<%=p.getProduct_id()%>" class="btn btn-primary ml-4"><i class="fa fa-edit">&nbsp; Update</i></a>||
-                      <a href="../ProductController?op=delete&id=<%=p.getProduct_id()%>" class="btn badge-danger" onclick="return confirmation()"><i class="fa fa-trash">&nbsp; Delete</i></a></td>
+                      <td><a href="editPro.jsp?id=<%=p.getProduct_id()%>" class="btn btn-primary ml-4"><i class="fa fa-edit">&nbsp; Update</i></a>
+                          <hr><a href="../ProductController?op=delete&id=<%=p.getProduct_id()%>" class="btn badge-danger ml-4" onclick="return confirmation()"><i class="fa fa-trash">&nbsp; Delete</i></a></td>
                     </tr>
                     <%}%>
                    
