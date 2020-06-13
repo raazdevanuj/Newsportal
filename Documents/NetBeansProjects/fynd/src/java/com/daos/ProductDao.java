@@ -286,7 +286,7 @@ public class ProductDao {
             smt.setString(2,product.getProduct_Brand());
             smt.setString(3,product.getProduct_price());
             smt.setString(4,product.getProduct_desc());
-            smt.setInt(6, product.getProduct_id());
+            smt.setInt(5, product.getProduct_id());
             
             if(smt.executeUpdate()>0) {
                 sql =  "update scp set category_id=?,sub_category_id=? where product_id=?";

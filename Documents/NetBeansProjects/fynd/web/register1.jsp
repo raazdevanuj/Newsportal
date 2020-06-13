@@ -27,7 +27,7 @@
    <jsp:include page="navbar.jsp"></jsp:include>
 
      <jsp:include page="slider.jsp"></jsp:include>
-<jsp:useBean class="com.beans.user" id="use" scope="session"></jsp:useBean>
+<jsp:useBean class="com.beans.user" id="usee" scope="session"></jsp:useBean>
  <jsp:setProperty name="usee" property="*"></jsp:setProperty>
 <br>
        
@@ -100,9 +100,9 @@
        
    UserDao vd=new UserDao();
    
-    if(vd.add1(use)){
+    if(vd.add1(usee)){
     out.println("<script>alert('Registered Successfully');</script>");
-     session.removeAttribute("use");
+     session.removeAttribute("usee");
                out.println("<script>window.location = 'index.jsp';</script>");
     }
 else

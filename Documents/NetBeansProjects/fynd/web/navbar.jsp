@@ -14,8 +14,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="about.jsp">About</a>
-                    </li>
+<!--                    <li><a href="about.jsp">About</a>
+                    </li>-->
                     
                     <li><a href="contactus.jsp">Contact Us</a>
                     </li>
@@ -33,7 +33,7 @@
         </div>
         <!-- /.container -->
     </nav>
-<jsp:useBean class="com.beans.user" id="use" scope="session"></jsp:useBean>
+<jsp:useBean class="com.beans.user" id="usee" scope="session"></jsp:useBean>
  <jsp:setProperty name="use" property="*"></jsp:setProperty>
 
      <div class="col-md-12"><label class="col-md-11">Current Location- ${use.city} ${use.locality},${use.pincode}</label></div>  

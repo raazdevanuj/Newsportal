@@ -1,13 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+       
         <title>Dashboard - Vendor</title>
+        <link rel="icon" href="media/slider1/loki.png"/>
         <jsp:include page="base.jsp"></jsp:include>
     </head>
     <body class="nav-fixed">
@@ -23,14 +20,14 @@
         <jsp:include page="sidebar.jsp"></jsp:include>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+                    <div>
                         <div class="container-fluid">
                             <div class="page-header-content">
                                 <h1 class="page-header-title">
-                                    <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                    <span>Dashboard</span>
+                                    <div class="page-header-icon"><i data-feather="activity"></i>
+                                    <span>Dashboard</span></div>
                                 </h1>
-                                <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                                
                             </div>
                         </div>
                     </div>

@@ -17,14 +17,12 @@
         <jsp:include page="base.jsp"></jsp:include>
 <style>
 
-                body{
-                    background: -webkit-linear-gradient(right, #0072ff, #00cfff);
-                }
+                
                 .contact-form{
                     background: #fff;
                     margin-top: 10%;
                     margin-bottom: 5%;
-                    width: 70%;
+                    width:100%;
                 }
                 .contact-form .form-control{
                     border-radius:1rem;
@@ -35,11 +33,11 @@
                 .contact-image img{
                     border-radius: 6rem;
                     width: 11%;
-                    margin-top: -3%;
+                    margin-top:-10%;
                     transform: rotate(29deg);
                 }
                 .contact-form form{
-                    padding: 14%;
+                    padding: 0%;
                 }
                 .contact-form form .row{
                     margin-bottom: -7%;
@@ -84,11 +82,14 @@
         <div class="container">
 
             <div class="row">
-            
+            <h3 class="bg-primary text-left">
+              
+                Fyndal is developed in concern of saving time and 
+	effort  of going to market and investigating whether 
+	the same is available or not.
+</h3>
                   <div class="contact-form col col-md-9 bg-danger">
-                                <div class="contact-image">
-                                    <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
-                                </div>
+                                
                                 <form method="post">
                                     <h3>Drop Us a Message</h3>
                                     <div class="row">
