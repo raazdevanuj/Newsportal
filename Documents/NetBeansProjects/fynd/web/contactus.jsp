@@ -82,12 +82,7 @@
         <div class="container">
 
             <div class="row">
-            <h3 class="bg-primary text-left">
-              
-                Fyndal is developed in concern of saving time and 
-	effort  of going to market and investigating whether 
-	the same is available or not.
-</h3>
+           
                   <div class="contact-form col col-md-9 bg-danger">
                                 
                                 <form method="post">
@@ -118,8 +113,16 @@
 
                         
             </div>
+              <h3 class="bg-primary text-left">
+              
+                Fyndal is developed in concern of saving time and 
+	effort  of going to market and investigating whether 
+	the same is available or not.
+</h3>
         </div>
+          
        </div>
+        
         <jsp:include page="footer.jsp"></jsp:include>
         <script src="assets/js/jquery-1.10.2.js"></script>
         <script src="assets/js/bootstrap.js"></script>

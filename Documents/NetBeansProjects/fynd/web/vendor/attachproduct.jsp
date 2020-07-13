@@ -23,7 +23,7 @@
     </style> 
      <script>
           function selectprod(x, y) {
-                    //alert(x);
+                   // alert(x);
                     ajax = new XMLHttpRequest();
 
                     ajax.open("GET", "../ProductController?op=prod&id="+x, true);
@@ -133,7 +133,7 @@
                                                      </td>
                                                      <td>
                                                         
-                                                         <select class="btn btn-cyan form-control"  name="cat" id="cid" onclick="selectprod(this.value,tab)">
+                                                         <select class="btn btn-cyan form-control"  name="cat" id="cid" onchange="selectprod(this.value,tab)">
                                                              <option value="-1">Select Sub-Category</option>
                                                          
                                                          </select>

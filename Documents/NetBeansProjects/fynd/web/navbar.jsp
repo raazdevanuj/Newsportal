@@ -14,8 +14,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-<!--                    <li><a href="about.jsp">About</a>
-                    </li>-->
+                    <li><a href="index.jsp"><i class="fa-fa-home">Home</i></a>
+                    </li>
                     
                     <li><a href="contactus.jsp">Contact Us</a>
                     </li>
